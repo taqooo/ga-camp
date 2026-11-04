@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【Goldin 100開催記念】世界最高峰オークション代行キャンペーン | MINT Auction Support</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FDF7E7',
+                            300: '#FCE3A1',
+                            400: '#F3C95A',
+                            500: '#D4AF37',
+                            600: '#AA8518',
+                            700: '#7F600A',
+                        },
+                        dark: {
+                            900: '#0B0D11',
+                            800: '#131720',
+                            700: '#1C2230',
+                            600: '#2A3347'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #07080B;
+            color: #E2E8F0;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF1B5 0%, #D4AF37 50%, #9A7712 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-bg-gradient {
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #D4AF37, #FCE3A1, #AA8518) 1;
+        }
+        .card-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+        }
+        .card-glow-strong {
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.25);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3347;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-black pb-20 md:pb-0">
+
+    <!-- Top Announcement Bar (Countdown) -->
+    <div class="bg-gradient-to-r from-dark-900 via-gold-700/40 to-dark-900 border-b border-gold-500/30 text-xs md:text-sm py-2 px-4 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-2">
+                <span class="bg-gold-500 text-black text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">期間限定</span>
+                <span class="font-medium text-slate-200">Goldin 100 開催記念 キャンペーン実施中！</span>
+            </div>
+            <div class="flex items-center space-x-2 text-gold-300 font-mono text-xs">
+                <span>キャンペーン終了まで：</span>
+                <span id="countdown-days" class="bg-black/60 px-1.5 py-0.5 rounded border border-gold-500/30 text-white font-bold">00</span>日
+                <span id="countdown-hours" class="bg-black/60 px-1.5 py-0.5 rounded border border-gold-500/30 text-white font-bold">00</span>時間
+                <span id="countdown-mins" class="bg-black/60 px-1.5 py-0.5 rounded border border-gold-500/30 text-white font-bold">00</span>分
+                <span id="countdown-secs" class="bg-black/60 px-1.5 py-0.5 rounded border border-gold-500/30 text-white font-bold">00</span>秒
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="border-b border-slate-800 bg-dark-900/90 py-4 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Brand Logo Simulation -->
+                <div>
+                    <div class="font-Jost uppercase tracking-tighter text-lg md:text-xl font-bold text-[#c29b53]">MINT AUCTION SUPPORT</div>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm text-slate-300 font-medium">
+                <a href="#features" class="hover:text-gold-400 transition-colors">キャンペーン2大特典</a>
+                <a href="#simulator" class="hover:text-gold-400 transition-colors">手数料シミュレーター</a>
+                <a href="#goldin100" class="hover:text-gold-400 transition-colors">Goldin 100とは</a>
+                <a href="#steps" class="hover:text-gold-400 transition-colors">ご利用の流れ</a>
+                <a href="#faq" class="hover:text-gold-400 transition-colors">よくある質問</a>
+            </div>
+            <a href="#apply-form" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-r from-gold-400 to-gold-600 text-black hover:brightness-110 transition-all shadow-lg hover:shadow-gold-500/20">
+                無料相談する
+            </a>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO (First View) -->
+    <section class="relative min-h-[85vh] flex items-center justify-center py-16 px-4 overflow-hidden bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900">
+        <!-- Background Grid Pattern & Radial Glow -->
+        <div class="absolute inset-0 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:32px_32px] opacity-10 pointer-events-none"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Sub header Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold-500/40 bg-gold-500/10 text-gold-300 text-xs md:text-sm font-semibold mb-6 backdrop-blur-sm shadow-inner">
+                <i class="fa-solid fa-crown text-gold-400"></i>
+                <span>Goldin 100 開催記念特別キャンペーン</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-3xl md:text-6xl font-black text-white leading-tight md:leading-tight mb-6 tracking-tight">
+                世界最高峰のオークションに、<br class="hidden sm:inline">
+                <span class="gold-gradient-text drop-shadow-md">ノーリスクで挑戦。</span>
+            </h1>
+
+            <!-- Offer Box (Impact Banner) -->
+            <div class="max-w-3xl mx-auto my-8 p-6 md:p-8 rounded-2xl bg-gradient-to-br from-dark-700/90 to-dark-900/90 border-2 border-gold-500/60 card-glow-strong backdrop-blur-md relative">
+                <div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-gold-500 to-amber-600 text-black text-xs md:text-sm font-black px-6 py-1 rounded-full uppercase tracking-widest shadow-md">
+                    キャンペーン限定特典
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="p-4 rounded-xl bg-black/40 border border-gold-500/30">
+                        <div class="text-xs text-gold-300 font-bold mb-1">落札成功時の代行手数料</div>
+                        <div class="text-3xl md:text-4xl font-black text-white">50% <span class="text-gold-400 text-2xl">OFF</span></div>
+                        <div class="text-[11px] text-slate-400 mt-1">通常4%〜10% ➔ <span class="text-gold-400 font-bold">2%〜5%</span> に！</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-black/40 border border-gold-500/30">
+                        <div class="text-xs text-gold-300 font-bold mb-1">落札失敗時</div>
+                        <div class="text-3xl md:text-4xl font-black text-white">完全 <span class="gold-gradient-text">無料</span></div>
+                        <div class="text-[11px] text-slate-400 mt-1">通常かかる代行手数料を <span class="text-gold-400 font-bold">全額免除</span></div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/50 text-slate-400 text-xs">
+                    ※対象期間：2026年11月10日(火) 〜 12月16日(水) | 事前デポジット30万円以上の案件が対象です
+                </div>
+            </div>
+
+            <!-- Sub copy -->
+            <p class="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+                欲しかったあの高額トレカやユニフォームを、あなたの手に。<br>
+                面倒な英語での交渉・決済・複雑な輸入手続きは、<strong class="text-white font-bold">MINT</strong>にお任せください。
+            </p>
+
+            <!-- CTA Button -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <a href="#apply-form" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg bg-gradient-to-r from-gold-400 via-gold-500 to-amber-600 text-black hover:brightness-110 transform hover:-translate-y-0.5 transition-all shadow-xl shadow-gold-500/25 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>無料相談はこちら</span>
+                </a>
+                <a href="#simulator" class="w-full sm:w-auto px-8 py-4 rounded-full font-semibold text-sm bg-dark-700 hover:bg-dark-600 text-slate-200 border border-slate-700 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calculator text-gold-400"></i>
+                    <span>お得額を試算する</span>
+                </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="pt-8 border-t border-slate-800/80 grid grid-cols-2 md:grid-cols-3 gap-4 text-xs text-slate-400 max-w-3xl mx-auto">
+                <div class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-dark-800/60 border border-slate-800">
+                    <i class="fa-solid fa-shield-halved text-gold-400 text-base"></i>
+                    <span>Goldin Auctionsオフィシャルパートナー</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-dark-800/60 border border-slate-800">
+                    <i class="fa-solid fa-truck-fast text-gold-400 text-base"></i>
+                    <span>補償付き配送サポート</span>
+                </div>
+                <div class="col-span-2 md:col-span-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-dark-800/60 border border-slate-800">
+                    <i class="fa-solid fa-headset text-gold-400 text-base"></i>
+                    <span>専任スタッフ完全日本語対応</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: PROBLEMS & PAIN POINTS -->
+    <section class="py-20 px-4 bg-dark-900 border-t border-b border-slate-800/60">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-xs uppercase tracking-widest text-gold-400 font-semibold mb-2">PAIN POINTS</h2>
+                <h3 class="text-2xl md:text-3xl font-bold text-white">海外オークションは気になるけど…<br>こんな不安はありませんか？</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Pain item 1 -->
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-800 hover:border-slate-700 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white mb-2">言葉とトラブルの壁</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        英語での交渉や現地出品者・オークション会社とのトラブルが不安…
+                    </p>
+                </div>
+
+                <!-- Pain item 2 -->
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-800 hover:border-slate-700 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white mb-2">複雑な輸入・税関手続き</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        「国際配送」「税関申告や輸入手続き」「海外送金」がよく分からなくて不安…
+                    </p>
+                </div>
+
+                <!-- Pain item 3 -->
+                <div class="p-6 rounded-2xl bg-dark-800 border border-slate-800 hover:border-slate-700 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/10 text-yellow-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h4 class="font-bold text-lg text-white mb-2">落札できなかった時の費用</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        落札できなかったときに、手数料だけ取られるのは避けたい…
+                    </p>
+                </div>
+            </div>
+
+            <!-- Solution Banner -->
+            <div class="p-8 rounded-2xl gold-bg-gradient text-black text-center shadow-xl">
+                <i class="fa-solid fa-circle-check text-3xl mb-3 text-black"></i>
+                <h4 class="text-2xl font-black mb-2">そのお悩み、MINT Auction Supportがすべて解決します！</h4>
+                <p class="text-sm md:text-base font-medium opacity-90 max-w-2xl mx-auto">
+                    オークションの入札から海外送金、発送手続きまで完全代行。<br>本キャンペーンならノーリスクで挑戦可能です！
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 2 SPECIAL OFFERS (CAMPAIGN DETAILS) -->
+    <section id="features" class="py-20 px-4 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-300 text-xs font-semibold tracking-widest uppercase">Special Offers</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-3">「Goldin 100」開催記念 <span class="gold-gradient-text">2大特典</span></h2>
+                <p class="text-slate-400 text-sm mt-2">高額コレクターの皆様を後押しする、今だけの限定キャンペーンです</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Feature 1 -->
+                <div class="rounded-3xl bg-dark-800/90 border-2 border-gold-500/40 p-8 card-glow relative flex flex-col justify-between overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-bl-full pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="w-10 h-10 rounded-full bg-gold-500 text-black font-black flex items-center justify-center text-lg">1</span>
+                            <span class="text-gold-400 font-bold text-sm tracking-wider">特典 01</span>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-white mb-3">落札成功時 代行手数料 <span class="text-gold-400">半額</span></h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            通常4%〜10%の代行手数料が、期間中全ランクで半額に。浮いた予算を入札枠へ回せます。
+                        </p>
+                    </div>
+
+                    <!-- Fee Tier Table -->
+                    <div class="bg-black/50 rounded-xl p-4 border border-slate-700/60 text-xs space-y-2">
+                        <div class="font-bold text-slate-300 pb-2 border-b border-slate-800 flex justify-between">
+                            <span>落札額ランク（USD）</span>
+                            <span>代行手数料率</span>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span>$501 ～ $10,000</span>
+                            <div><span class="line-through text-slate-500 mr-2">10%</span> <span class="text-gold-400 font-bold text-sm">5%</span></div>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span>$10,001 ～ $100,000</span>
+                            <div><span class="line-through text-slate-500 mr-2">8%</span> <span class="text-gold-400 font-bold text-sm">4%</span></div>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span>$100,001 ～ $1,000,000</span>
+                            <div><span class="line-through text-slate-500 mr-2">6%</span> <span class="text-gold-400 font-bold text-sm">3%</span></div>
+                        </div>
+                        <div class="flex justify-between items-center text-slate-400">
+                            <span>$1,000,001 ～</span>
+                            <div><span class="line-through text-slate-500 mr-2">4%</span> <span class="text-gold-400 font-bold text-sm">2%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="rounded-3xl bg-dark-800/90 border-2 border-gold-500/40 p-8 card-glow relative flex flex-col justify-between overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-bl-full pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="w-10 h-10 rounded-full bg-gold-500 text-black font-black flex items-center justify-center text-lg">2</span>
+                            <span class="text-gold-400 font-bold text-sm tracking-wider">特典 02</span>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-white mb-3">落札失敗時 手数料 <span class="text-gold-400">完全無料</span></h3>
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                            通常発生する落札失敗時の調査・代行手数料（通常$25〜0.5%）を、本キャンペーンでは全額免除いたします。<br>
+                            万が一落札できなかった場合でもリスクはゼロ。ノーリスクで世界最高峰のオークションに挑めます。
+                        </p>
+                    </div>
+
+                    <!-- Risk-Free Highlight Card -->
+                    <div class="bg-gradient-to-r from-gold-500/10 via-amber-500/5 to-transparent rounded-xl p-5 border border-gold-500/30">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-shield-cat text-gold-400 text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">預り金（デポジット）全額返金保証</h4>
+                                <p class="text-xs text-slate-400 mt-1">
+                                    落札できなかった場合、お預かりしたデポジットは振込手数料を除き速やかに全額ご返金いたします。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Condition Note -->
+            <div class="bg-dark-900/90 border border-slate-800 rounded-2xl p-5 text-center text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-center gap-2">
+                <span class="bg-slate-800 text-slate-300 px-2.5 py-1 rounded font-bold">キャンペーン適用条件</span>
+                <span>事前デポジット（預り金）<strong class="text-gold-300">30万円以上</strong>のご依頼案件が対象となります。</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE FEE SIMULATOR -->
+    <section id="simulator" class="py-20 px-4 bg-dark-900 border-t border-b border-slate-800">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest">Simulator</span>
+                <h2 class="text-3xl font-bold text-white mt-2">どれくらいお得？ 手数料シミュレーター</h2>
+                <p class="text-slate-400 text-sm mt-1">ご予算・想定落札額を入力すると、得する金額をリアルタイムで試算します</p>
+            </div>
+
+            <div class="bg-dark-800 rounded-3xl p-6 md:p-10 border border-slate-700 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Controls -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">通貨の選択</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button id="currency-jpy" onclick="setCurrency('JPY')" class="py-2 rounded-lg font-bold text-xs bg-gold-500 text-black transition-all">日本円 (JPY ¥)</button>
+                                <button id="currency-usd" onclick="setCurrency('USD')" class="py-2 rounded-lg font-bold text-xs bg-dark-700 text-slate-300 border border-slate-700 transition-all">米ドル (USD $)</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label id="input-label" class="text-xs font-bold text-slate-300 uppercase tracking-wider">想定落札金額 (円)</label>
+                                <span id="exchange-rate-note" class="text-[11px] text-slate-500">※為替換算目安 $1 = 150円</span>
+                            </div>
+                            <div class="relative">
+                                <span id="currency-symbol" class="absolute left-4 top-1/2 -translate-y-1/2 text-gold-400 font-bold">¥</span>
+                                <input type="number" id="calc-amount" value="5000000" step="100000" min="100000" oninput="calculateSavings()" class="w-full bg-dark-900 border-2 border-slate-700 focus:border-gold-500 text-white rounded-xl py-3 pl-10 pr-4 text-lg font-bold focus:outline-none transition-colors">
+                            </div>
+                        </div>
+
+                        <!-- Quick Presets -->
+                        <div>
+                            <span class="text-xs text-slate-400 mb-2 block">クイック選択:</span>
+                            <div class="flex flex-wrap gap-2" id="preset-buttons">
+                                <!-- Generated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div class="bg-dark-900/90 rounded-2xl p-6 border border-gold-500/30 space-y-4">
+                        <div class="text-center pb-4 border-b border-slate-800">
+                            <span class="text-xs text-slate-400 block mb-1">本キャンペーンで得する代行手数料</span>
+                            <div id="result-savings" class="text-3xl md:text-4xl font-black text-gold-400">¥200,000</div>
+                            <span class="inline-block mt-2 text-[11px] bg-gold-500/10 text-gold-300 px-3 py-1 rounded-full border border-gold-500/20 font-semibold">
+                                手数料率：<span id="result-rate-old" class="line-through text-slate-500">8%</span> ➔ <span id="result-rate-new" class="text-gold-400 font-bold">4%</span>
+                            </span>
+                        </div>
+
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between text-slate-400">
+                                <span>通常時の代行手数料:</span>
+                                <span id="result-normal-fee" class="font-mono">¥400,000</span>
+                            </div>
+                            <div class="flex justify-between text-white font-bold pt-2 border-t border-slate-800">
+                                <span>キャンペーン特別手数料:</span>
+                                <span id="result-campaign-fee" class="font-mono text-gold-300">¥200,000</span>
+                            </div>
+                        </div>
+
+                        <a href="#apply-form" onclick="prefillAmount()" class="mt-4 w-full py-3 bg-gradient-to-r from-gold-500 to-amber-600 text-black font-bold rounded-xl text-center block text-xs hover:brightness-110 transition-all shadow-md">
+                            相談・申込みはこちら
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: ABOUT GOLDIN 100 -->
+    <section id="goldin100" class="py-20 px-4 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold">
+                        <i class="fa-solid fa-trophy"></i>
+                        <span>11月3日〜12月5日 開催</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
+                        世界最高峰のハイエンドオークション
+                        <span class="gold-gradient-text font-cinzel">Goldin 100</span> とは？
+                    </h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        スポーツカード、ポケモンカード、MTG、最高級コレクタブルなど、歴史的価値を持つ伝説級の超レアアイテム100点だけが出品されるGoldin Auctionsの中でも最高峰のオークションが「Goldin 100」。
+                    </p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        世界中の超高額コレクターたちが熱狂し、億単位の取引が連発する最高峰のオークションに、MINTの強固なサポートのもと安心して参戦いただけます。
+                    </p>
+                    <div class="p-4 rounded-xl bg-dark-700/60 border border-slate-700 text-xs text-slate-400">
+                        <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+                        期間中にGoldin Auctionsで開催されるすべてのオークション（Weekly / Elite / Goldin 100など）が本キャンペーンの対象となります。
+                    </div>
+                </div>
+
+                <!-- Goldin Visual Graphic -->
+                <div class="md:col-span-5">
+                    <div class="relative p-6 rounded-3xl bg-gradient-to-b from-dark-700 to-dark-900 border border-gold-500/30 text-center card-glow">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gold-500/10 border border-gold-500/40 flex items-center justify-center text-gold-400 text-3xl">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h4 class="font-cinzel text-xl font-bold text-white tracking-widest">GOLDIN 100</h4>
+                        <p class="text-xs text-gold-400 mt-1 mb-4 font-semibold">PREMIUM AUCTION EVENT</p>
+                        <div class="space-y-2 text-xs text-slate-300 text-left bg-black/40 p-4 rounded-xl border border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-gold-400"></i>
+                                <span>PSA10/BGS10 超希少カード多数</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-gold-400"></i>
+                                <span>ヴィンテージ・1of1 メモラビリア</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-gold-400"></i>
+                                <span>世界中の富裕層コレクターが注目</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: HOW IT WORKS (4 STEPS) -->
+    <section id="steps" class="py-20 px-4 bg-dark-900 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest">Process</span>
+                <h2 class="text-3xl font-bold text-white mt-2">ご利用の流れ</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Step 1 -->
+                <div class="relative p-6 rounded-2xl bg-dark-800 border border-slate-700 flex flex-col justify-between">
+                    <div class="absolute -top-4 left-6 bg-gold-500 text-black font-black text-xs px-3 py-1 rounded-full">STEP 01</div>
+                    <div class="pt-2">
+                        <i class="fa-solid fa-magnifying-glass text-gold-400 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-white text-base mb-2">無料相談・お見積り</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Goldinで出品されているお目当ての商品のURLをお知らせください。総額目安を試算いたします。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative p-6 rounded-2xl bg-dark-800 border border-slate-700 flex flex-col justify-between">
+                    <div class="absolute -top-4 left-6 bg-gold-500 text-black font-black text-xs px-3 py-1 rounded-full">STEP 02</div>
+                    <div class="pt-2">
+                        <i class="fa-solid fa-vault text-gold-400 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-white text-base mb-2">デポジットお預かり</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            キャンペーン条件となるデポジットをお預かりし、お客様の最大入札上限を設定します。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative p-6 rounded-2xl bg-dark-800 border border-slate-700 flex flex-col justify-between">
+                    <div class="absolute -top-4 left-6 bg-gold-500 text-black font-black text-xs px-3 py-1 rounded-full">STEP 03</div>
+                    <div class="pt-2">
+                        <i class="fa-solid fa-gavel text-gold-400 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-white text-base mb-2">プロによる入札実行</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            MINTの専門スタッフがオークション終了直前まで確実な入札コントロールを行います。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative p-6 rounded-2xl bg-dark-800 border border-slate-700 flex flex-col justify-between">
+                    <div class="absolute -top-4 left-6 bg-gold-500 text-black font-black text-xs px-3 py-1 rounded-full">STEP 04</div>
+                    <div class="pt-2">
+                        <i class="fa-solid fa-box-open text-gold-400 text-2xl mb-4"></i>
+                        <h3 class="font-bold text-white text-base mb-2">お届け・精算</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            落札成功時は安全梱包でお届け。不落札の場合はお預かりしたデポジットを全額ご返金します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: FAQ (Accordion) -->
+    <section id="faq" class="py-20 px-4 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-900 border-t border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest">FAQ</span>
+                <h2 class="text-3xl font-bold text-white mt-2">よくあるご質問</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-slate-700 rounded-2xl bg-dark-800 overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full text-left p-5 font-bold text-slate-200 flex justify-between items-center hover:bg-dark-700/50 transition-colors">
+                        <span class="flex items-center gap-3">
+                            <span class="text-gold-400 font-bold">Q.</span>
+                            もし落札できなかった場合、デポジットはどうなりますか？
+                        </span>
+                        <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-1" class="hidden p-5 pt-0 text-xs md:text-sm text-slate-400 border-t border-slate-800 leading-relaxed bg-black/20">
+                        今回のキャンペーンにより落札失敗時の代行手数料は「0円」となりますので、お預かりしたデポジットは全額ご返金いたします。（※ご返金に伴う銀行振込手数料はお客様負担となります）
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-slate-700 rounded-2xl bg-dark-800 overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full text-left p-5 font-bold text-slate-200 flex justify-between items-center hover:bg-dark-700/50 transition-colors">
+                        <span class="flex items-center gap-3">
+                            <span class="text-gold-400 font-bold">Q.</span>
+                            デポジット（預り金）金額の計算方法を教えてください。
+                        </span>
+                        <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-2" class="hidden p-5 pt-0 text-xs md:text-sm text-slate-400 border-t border-slate-800 leading-relaxed bg-black/20">
+                        お客様の「ご希望の最大入札上限額」に加え、オークション会社手数料（バイヤーズプレミアム）や諸経費（国際送料・輸入関税等）の概算を含めて計算いたします。概ね落札額の1.5倍前後となります。無料相談にて正確なお見積もりをお出ししますので、まずはお気軽にお問い合わせください。
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-slate-700 rounded-2xl bg-dark-800 overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full text-left p-5 font-bold text-slate-200 flex justify-between items-center hover:bg-dark-700/50 transition-colors">
+                        <span class="flex items-center gap-3">
+                            <span class="text-gold-400 font-bold">Q.</span>
+                            途中で依頼をキャンセルすることはできますか？
+                        </span>
+                        <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-answer-3" class="hidden p-5 pt-0 text-xs md:text-sm text-slate-400 border-t border-slate-800 leading-relaxed bg-black/20">
+                        デポジット入金前であればキャンセル可能です。デポジット入金後は速やかに入札が行われるため入金後のキャンセルはお受けできません。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: APPLICATION & CONTACT FORM -->
+    <section id="apply-form" class="py-20 px-4 bg-dark-900 border-t border-slate-800">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 border border-gold-500/40 text-xs font-bold uppercase tracking-widest">Application</span>
+                <h2 class="text-3xl font-bold text-white mt-2">お申し込み</h2>
+                <p class="text-slate-400 text-sm mt-1">ご相談・お見積もりは完全無料です。専門スタッフが3営業日以内にご回答いたします。</p>
+            </div>
+                <div style="background: #ffffff; padding: 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <iframe style="width:100%; height:600px; border:none;" src="https://formok.com/f/4jahqlqs"></iframe>
+                </div>
+            <!--
+            <form id="campaignForm" onsubmit="handleFormSubmit(event)" class="bg-dark-800 rounded-3xl p-6 md:p-10 border border-gold-500/30 card-glow space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">お名前 <span class="text-red-400">*</span></label>
+                        <input type="text" required placeholder="カード 太郎" class="w-full bg-dark-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:border-gold-500 focus:outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">メールアドレス <span class="text-red-400">*</span></label>
+                        <input type="email" required placeholder="example@mint.co.jp" class="w-full bg-dark-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:border-gold-500 focus:outline-none transition-colors">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">お電話番号</label>
+                        <input type="tel" placeholder="090-1234-5678" class="w-full bg-dark-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:border-gold-500 focus:outline-none transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">想定ご予算 / 入札上限額</label>
+                        <input type="text" id="form-budget" placeholder="例: 5,000,000円 または $35,000" class="w-full bg-dark-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:border-gold-500 focus:outline-none transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">狙っている商品URL または カード名</label>
+                    <input type="text" placeholder="例: Goldin出品ページのURL、または「2003 Lebron James Auto PSA10」など" class="w-full bg-dark-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:border-gold-500 focus:outline-none transition-colors">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">ご質問・ご要望</label>
+                    <textarea rows="4" placeholder="デポジットについて、配送日数についてなどご自由にご記入ください" class="w-full bg-dark-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:border-gold-500 focus:outline-none transition-colors"></textarea>
+                </div>
+
+                <div class="bg-black/40 p-4 rounded-xl border border-slate-800 flex items-start space-x-3">
+                    <input type="checkbox" id="agree-terms" required class="mt-1 rounded accent-gold-500">
+                    <label for="agree-terms" class="text-xs text-slate-400">
+                        <a href="#" class="text-gold-400 underline">利用規約</a> およびキャンペーン適用条件（事前デポジット30万円以上）に同意して送信します。
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-full font-bold text-lg bg-gradient-to-r from-gold-400 via-gold-500 to-amber-600 text-black hover:brightness-110 shadow-xl transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>上記の内容で無料相談・申し込む</span>
+                </button>
+            </form>
+-->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-slate-500 py-12 px-4 border-t border-slate-900 text-xs text-center space-y-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="font-['Bodoni_Moda'] text-sm tracking-tighter font-bold text-[#c29b53]">MINT AUCTION SUPPORT</span>
+            </div>
+            <div class="flex space-x-6 text-slate-400">
+                <a href="https://info-mint-web.jp/auc-bid/" class="hover:text-gold-400 transition-colors">サービスサイト</a>
+                <a href="https://mint-web.jp/?tid=6&mode=f230" class="hover:text-gold-400 transition-colors">プライバシーポリシー</a>
+                <a href="https://mint-web.jp/?mode=f231" class="hover:text-gold-400 transition-colors">特定商取引法に基づく表記</a>
+            </div>
+        </div>
+        <div>
+            &copy; 2026 MINT Co., Ltd. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- MOBILE FIXED CTA BAR -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 p-3 bg-dark-900/95 border-t border-gold-500/30 backdrop-blur-md z-40 flex items-center justify-between gap-3">
+        <div>
+            <div class="text-[10px] text-gold-300 font-bold">Goldin 100 開催記念</div>
+            <div class="text-xs text-white font-extrabold">代行手数料半額＆失敗0円</div>
+        </div>
+        <a href="#apply-form" class="px-5 py-2.5 bg-gradient-to-r from-gold-400 to-amber-600 text-black font-bold text-xs rounded-full shadow-lg">
+            今すぐ申し込む
+        </a>
+    </div>
+
+    <!-- CUSTOM TOAST / MODAL NOTIFICATION -->
+    <div id="custom-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-dark-800 border-2 border-gold-500/60 rounded-3xl p-6 md:p-8 max-w-md w-full text-center space-y-4 card-glow-strong">
+            <div class="w-16 h-16 bg-gold-500/20 text-gold-400 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">お問い合わせを受け付けました</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                ご入力いただいた内容を送信いたしました。<br>
+                MINT専門スタッフより24時間以内にご案内メールをお送りいたします。
+            </p>
+            <button onclick="closeModal()" class="w-full py-3 bg-gold-500 text-black font-bold rounded-xl text-xs hover:brightness-110">
+                閉じる
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. COUNTDOWN TIMER LOGIC (Ends Dec 19, 2026)
+        const targetDate = new Date('2026-12-16T23:59:59').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown-days').innerText = String(days).padStart(2, '0');
+                document.getElementById('countdown-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('countdown-mins').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('countdown-secs').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 2. FEE SIMULATOR LOGIC
+        let currentCurrency = 'JPY';
+        const exchangeRate = 150; // $1 = 150 JPY
+
+        const presetsJPY = [1000000, 3000000, 5000000, 15000000, 50000000];
+        const presetsUSD = [6700, 20000, 33400, 100000, 333000];
+
+        function setCurrency(curr) {
+            currentCurrency = curr;
+            const btnJpy = document.getElementById('currency-jpy');
+            const btnUsd = document.getElementById('currency-usd');
+            const symbol = document.getElementById('currency-symbol');
+            const label = document.getElementById('input-label');
+            const input = document.getElementById('calc-amount');
+
+            if (curr === 'JPY') {
+                btnJpy.className = 'py-2 rounded-lg font-bold text-xs bg-gold-500 text-black transition-all';
+                btnUsd.className = 'py-2 rounded-lg font-bold text-xs bg-dark-700 text-slate-300 border border-slate-700 transition-all';
+                symbol.innerText = '¥';
+                label.innerText = '想定落札金額 (円)';
+                input.value = '5000000';
+                input.step = '100000';
+            } else {
+                btnUsd.className = 'py-2 rounded-lg font-bold text-xs bg-gold-500 text-black transition-all';
+                btnJpy.className = 'py-2 rounded-lg font-bold text-xs bg-dark-700 text-slate-300 border border-slate-700 transition-all';
+                symbol.innerText = '$';
+                label.innerText = '想定落札金額 (米ドル)';
+                input.value = '33400';
+                input.step = '1000';
+            }
+            renderPresets();
+            calculateSavings();
+        }
+
+        function renderPresets() {
+            const container = document.getElementById('preset-buttons');
+            container.innerHTML = '';
+            const list = currentCurrency === 'JPY' ? presetsJPY : presetsUSD;
+            const prefix = currentCurrency === 'JPY' ? '¥' : '$';
+
+            list.forEach(val => {
+                const btn = document.createElement('button');
+                btn.className = 'px-3 py-1 rounded-lg bg-dark-700 hover:bg-dark-600 text-slate-300 text-xs border border-slate-700 transition-colors';
+                btn.innerText = prefix + val.toLocaleString();
+                btn.onclick = () => {
+                    document.getElementById('calc-amount').value = val;
+                    calculateSavings();
+                };
+                container.appendChild(btn);
+            });
+        }
+        renderPresets();
+
+        function calculateSavings() {
+            const rawVal = parseFloat(document.getElementById('calc-amount').value) || 0;
+            let usdVal = currentCurrency === 'JPY' ? rawVal / exchangeRate : rawVal;
+
+            let oldRate = 0.10;
+            let newRate = 0.05;
+
+            if (usdVal > 1000000) {
+                oldRate = 0.04;
+                newRate = 0.02;
+            } else if (usdVal > 100000) {
+                oldRate = 0.06;
+                newRate = 0.03;
+            } else if (usdVal > 10000) {
+                oldRate = 0.08;
+                newRate = 0.04;
+            } else {
+                oldRate = 0.10;
+                newRate = 0.05;
+            }
+
+            const normalFee = rawVal * oldRate;
+            const campaignFee = rawVal * newRate;
+            const savings = normalFee - campaignFee;
+
+            const prefix = currentCurrency === 'JPY' ? '¥' : '$';
+
+            document.getElementById('result-savings').innerText = prefix + Math.round(savings).toLocaleString();
+            document.getElementById('result-normal-fee').innerText = prefix + Math.round(normalFee).toLocaleString();
+            document.getElementById('result-campaign-fee').innerText = prefix + Math.round(campaignFee).toLocaleString();
+
+            document.getElementById('result-rate-old').innerText = (oldRate * 100) + '%';
+            document.getElementById('result-rate-new').innerText = (newRate * 100) + '%';
+        }
+        calculateSavings();
+
+        function prefillAmount() {
+            const rawVal = parseFloat(document.getElementById('calc-amount').value) || 0;
+            const prefix = currentCurrency === 'JPY' ? '約 ' : '$';
+            const suffix = currentCurrency === 'JPY' ? ' 円' : ' USD';
+            document.getElementById('form-budget').value = prefix + rawVal.toLocaleString() + suffix;
+        }
+
+        // 3. FAQ ACCORDION LOGIC
+        function toggleFaq(index) {
+            const ans = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                ans.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // 4. FORM MODAL HANDLER
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+            document.getElementById('campaignForm').reset();
+        }
+    </script>
+</body>
+</html>
